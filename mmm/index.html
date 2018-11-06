@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head><meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <meta name="format-detection"content="telephone=no">
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <title>再见，北京地铁2元的风景</title>
-  <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/modernizr.2.5.3.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/basic.css"/>
+<head><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection"content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <title>再见，北京地铁2元的风景</title>
+    <script type="text/javascript" src="js/spaRouter.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/modernizr.2.5.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/basic.css"/>
 </head>
 <body>
-
-  <div class="flipbook-viewport" style="display:none;">
+<div class="book-container">
+    <div class="book1"></div>
+    <div class="flipbook-viewport">
       <div class="container">
         <div class="flipbook">
-        	<div class="hard" style="background:url(image/covers1.jpg) center top no-repeat;background-size:100%">
+            <div class="hard" style="background:url(image/covers1.jpg) center top no-repeat;background-size:100%">
             </div>
 			  <div style="background:url(image/0.jpg) center top no-repeat;background-size:100%">
 			  </div>
 			  <div style="background:url(image/112504538.jpg) center top no-repeat;background-size:100%">
-			  aaa</div>
+			  </div>
               <div style="background:url(image/1.jpg) center top no-repeat;background-size:100%">
               </div>
               <div style="background:url(image/2.jpg) center top no-repeat;background-size:100%">
@@ -47,57 +49,129 @@
         </div>
        </div>
   </div>
-  <div id="end" style="display:none;width:100%;height:100%;background:url(image/fengdi3.jpg) center top no-repeat;background-size:100%">
-    <div id="btns">
-      <a style="margin-bottom:40px;" href="index.html" id="rewatch">再看一遍</a>
-      <button class="share_btn" style="margin-bottom:200px;"  data-title="再见，北京地铁2元的风景" data-url="" data-des="地铁终点站外，是遥远的风景；也是疲惫的人们，北京的家。" data-pic="image/minilogo.png">分享给好友</button>
-  </div>
-  </div>
-
-  <script type="text/javascript">
-//      var div = document.querySelectorAll('div.flipbook div')[0].classList;
-//      console.log(div);
-//一开始就给里面的div添加了类page 和 p1
-$(function progressbar(){
-    var w = $(".graph").width();
-    console.log($('div.flipbook div')[0].classList);
-    $(".flipbook-viewport").show();
-});
-//屏蔽ios下上下弹性
-$(window).on('scroll.elasticity', function (e) {
-    e.preventDefault();
-}).on('touchmove.elasticity', function (e) {
-    e.preventDefault();
-});
-function loadApp() {
+    <div class="back-listT">
+        <i class="back-icon"></i>
+    </div>
+    <div class="back-list"></div>
+    <div class="back-listB"></div>
+    </div>
+<script type="text/javascript">
     var w=$(window).width();
     var h=$(window).height();
-    $('.flipboox').width(w).height(h);
-    console.log($('.flipbook').width(),$('.flipbook').height());
-    $(window).resize(function(){
-        w=$(window).width();
-        h=$(window).height();
-        $('.flipboox').width(w).height(h);
+    var book1 = $('div.book1');
+    var flipbookViewport = $('div.flipbook-viewport');
+    var backList = $('div.back-list');
+    var backTop = $('div.back-listT');
+    var backBottom = $('div.back-listB');
+    var backBtn = $('div.back-listT i');
+
+    router.setOptions({
     });
-    $('.flipbook').turn({
-        // Width
-        width:w,
-        // Height
-        height:h,
-        // Elevation
-        elevation: 50,
-        display :'single',
-        // Enable gradients
-        gradients: true,
-        // Auto center this flipbook
-        autoCenter: true
+    router.route('/',function(){
+        controlBack();
+        flipbookViewport.animate({
+            left: w
+        },1000);
+        backList.css('z-index',-1);
     });
-}
-yepnope({
-    test : Modernizr.csstransforms,
-    yep: ['js/turn.js'],
-    complete: loadApp
-});
+    router.route('/book1',function(){
+        flipbookViewport.animate({
+            left: 0
+        },1000);
+        backList.css('z-index',1);
+    });
+    router.init();
+
+    function init() {
+        $('body').width(w);
+        $('body').height(h);
+        flipbookViewport.css('left',w);
+
+        book1.width(0.2*w);
+        book1.height(0.2*h);
+        book1.css('top',0.1*h);
+        book1.css('left',0.1*w);
+        backTop.height(0.1*h);
+        backTop.css('top',-0.1*h);
+        backBottom.height(0.1*h);
+        backBottom.css('bottom',-0.1*h);
+
+        backList.width(0.4*w);
+        backList.height(0.4*h);
+        backList.css('top',0.3*h);
+        backList.css('left',0.3*w);
+        backList.on('click',function (e) {
+            controlBack();
+        });
+
+        book1.on('click',function (e) {
+            router.go('/book1');
+        });
+        backBtn.on('click',function () {
+            router.go('/');
+        });
+
+        //屏蔽ios下上下弹性
+        $(window).on('scroll.elasticity', function (e) {
+            e.preventDefault();
+        }).on('touchmove.elasticity', function (e) {
+            e.preventDefault();
+        });
+    }
+    init();
+
+    function controlBack() {
+        if(backTop.css('top') == '0px'){
+            backTop.animate({
+                top: -0.1*h
+            },200);
+            backBottom.animate({
+                bottom: -0.1*h
+            },200);
+            backList.width(0.4*w);
+            backList.height(0.4*h);
+            backList.css('top',0.3*h);
+            backList.css('left',0.3*w);
+        }else{
+            backTop.animate({
+                top: 0
+            },200);
+            backBottom.animate({
+                bottom: 0
+            },200);
+            backList.width(w);
+            backList.height(0.8*h);
+            backList.css('top',0.1*h);
+            backList.css('left',0);
+        }
+    }
+
+    function loadApp() {
+        $(window).resize(function(){
+            w=$(window).width();
+            h=$(window).height();
+            $('body').width(w).height(h);
+        });
+        $('.flipbook').turn({
+            // Width
+            width:w,
+            // Height
+            height:h,
+            // Elevation
+            elevation: 50,
+            display :'single',
+            // Enable gradients
+            gradients: true,
+            // Auto center this flipbook
+            autoCenter: true
+        });
+    }
+
+    yepnope({
+        test : Modernizr.csstransforms,
+        yep: ['js/turn.js'],
+        complete: loadApp
+    });
 </script>
 
 </body>
