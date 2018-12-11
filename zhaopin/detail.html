@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>职位介绍</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no, email=no"/>    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/detail.css">
+  <script src="js/common.js"></script>
+  <script src="js/detailData.js?v=1"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="hd">
+    <h1></h1>
+    <div class="txt">
+      <p class="info">深圳、<a class="info"></a></p>
+      <div class="date">2018-12-10</div>
+    </div>
+  </div>
+  <div class="bd">
+    <h2>工作职责：</h2>
+    <p class="jcontent"></p>
+
+    <h2>工作要求：</h2>
+    <p class="jrequire">
+
+    </p>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>简历命名“姓名-求职岗位”投至：</p>
+  <p class="email">kjhr@evergrande.com</p>
+  <p class="tel">咨询电话：0755-81997382</p>
+</div>
+<script>
+    /*页面初始化时*/
+    function urlArgs(){
+        var args = {};
+        var query = location.search.substring(1);
+        var pairs = query.split('&');
+        for(var i = 0; i < pairs.length; i++){
+            var pos = pairs[i].indexOf('=');
+            if(pos === -1) continue;
+            var name = pairs[i].substring(0,pos);
+            var value = pairs[i].substring(pos+1);
+            value = decodeURIComponent(value);
+            args[name] = value;
+        }
+        return args;
+    }
+
+    var args = urlArgs()
+    var index = args['id']
+
+    var dataList = detailData[index];
+
+    var jobName = document.querySelector('.hd h1');
+    var jobOfType = document.querySelector('.txt .info a');
+    var jobContent = document.querySelector('.bd .jcontent');
+    var jobRequire = document.querySelector('.bd .jrequire');
+    jobName.innerText = dataList['name'];
+    jobOfType.innerText = decodeURIComponent(args['type']);
+    jobContent.innerText = dataList['jobContent']
+    jobRequire.innerText = dataList['jobRequire'];
+</script>
+</body>
+</html>

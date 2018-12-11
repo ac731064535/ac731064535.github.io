@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>职位招聘</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/list.css">
+  <script src="js/common.js"></script>
+  <script src="js/jobType.js?v=1"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="jobs-sort">
+    <div class="info">
+      <p class="name">职位类型</p>
+      <p class="type"></p>
+    </div>
+    <img class="arrow" src="img/into.png" alt="">
+  </div>
+
+  <ul class="list">
+  </ul>
+
+  <div class="pop-box" style="display: none">
+    <div class="pop-bg"></div>
+    <ul class="pop-con">
+      <li>
+        <label>
+          <input type="radio" name="sort" value="prodAndpro">
+          <p class="ico-radio">产品/项目</p>
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="radio" name="sort" value="designType">
+          <p class="ico-radio">设计类</p>
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="radio" name="sort" value="technicalType">
+          <p class="ico-radio">技术类</p>
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="radio" name="sort" value="prodANDmarket">
+          <p class="ico-radio">生产与市场类</p>
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="radio" name="sort" value="inMgmtType">
+          <p class="ico-radio">综合管理类</p>
+        </label>
+      </li>
+    </ul>
+  </div>
+</div>
+<script>
+    /*页面初始化时*/
+    function urlArgs(){
+        var args = {};
+        var query = location.search.substring(1);
+        var pairs = query.split('&');
+        for(var i = 0; i < pairs.length; i++){
+            var pos = pairs[i].indexOf('=');
+            if(pos === -1) continue;
+            var name = pairs[i].substring(0,pos);
+            var value = pairs[i].substring(pos+1);
+            value = decodeURIComponent(value);
+            args[name] = value;
+        }
+        return args;
+    }
+
+    var args = urlArgs()
+    var index = args['cate']
+
+    var dataList = ''
+
+    var title = document.querySelector('.jobs-sort .info .type')
+    var ul = document.querySelector('ul.list')
+    changeData(index);
+    ul.addEventListener('click', function(e) {
+        var tar = e.target
+        if (tar.tagName.toLowerCase() === 'li'){
+            window.location.href="detail.html?id=" + e.target.index + "&type=" + encodeURIComponent(dataList[0]['type'])
+        }else if(tar.tagName.toLowerCase() === 'h3' || tar.tagName.toLowerCase() === 'div') {
+            window.location.href="detail.html?id=" + e.target.parentNode.index + "&type=" + encodeURIComponent(dataList[0]['type'])
+        }else if(tar.tagName.toLowerCase() === 'p'){
+            window.location.href="detail.html?id=" + e.target.parentNode.parentNode.index + "&type=" + encodeURIComponent(dataList[0]['type'])
+        }
+    })
+
+    /*当切换选项时*/
+    var showTag = document.querySelector('.jobs-sort');
+    var tagDiv = document.querySelector('div.pop-box');
+    var radioList = document.querySelectorAll('input[type="radio"]')
+    for(var j = 0; j < radioList.length; j++) {
+        if (radioList[j].value === index) {
+            radioList[j].checked = true
+            break
+        }
+    }
+    showTag.addEventListener('click', function () {
+        tagDiv.style.display = 'block';
+    });
+    tagDiv.addEventListener('click', function (e) {
+        console.log('iiii', e.target)
+        if(e.target.tagName.toLowerCase() === 'input'){
+            e.target.checked = true
+            index = e.target.value
+            window.location.replace("list.html?cate=" + index)
+            changeData(e.target.value)
+            tagDiv.style.display = 'none'
+        }else if (e.target.className.toLowerCase() === 'pop-bg'){
+            tagDiv.style.display = 'none'
+        }
+    });
+    function changeData(ind) {
+        while(ul.hasChildNodes()){
+            ul.removeChild(ul.firstChild);
+        }
+        dataList = jobType[ind]
+        title.innerText = dataList[0]['type']
+        for (var i = 0; i < dataList.length; i++){
+            var li = document.createElement('li')
+            li.index = dataList[i]['index']
+            li.innerHTML = "\n" +
+                "      <h3 class=\"title\">"+dataList[i]['label']+"</h3>\n" +
+                "      <div class=\"txt\">\n" +
+                "        <p class=\"info\">深圳，"+dataList[0]['type']+"</p>\n" +
+                "        <p class=\"date\">2018-12-10</p>\n" +
+                "      </div>"
+            ul.appendChild(li);
+        }
+    }
+</script>
+</body>
+</html>

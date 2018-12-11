@@ -1,0 +1,76 @@
+.wrap {
+  width: 100%;
+  height: 100%;
+
+  padding: 2.2rem 2rem 14rem;
+}
+
+.hd {
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid #DBDBDB;
+}
+
+.hd h1 {
+  font-size: 2.1rem;
+  line-height: 3rem;
+  color: #926600;
+  margin-bottom: .6rem;
+}
+
+.hd .txt {
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.7rem;
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, .3);
+}
+
+.bd {
+  padding-top: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+
+.bd p {
+  word-break: break-all;
+}
+
+.bd h2 {
+  margin-bottom: 1.2rem;
+  font-weight: bold;
+}
+
+.bd p + h2 {
+  margin-top: 1.2rem;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 12rem;
+  line-height: 2.2rem;
+  padding: 2.1rem 2rem 0 7.3rem;
+  background-image: url(../img/icon2.png);
+  background-repeat: no-repeat;
+  background-position: 2rem 2.5rem;
+  background-size: 3.5rem;
+  font-size: 1.4rem;
+  color: #000;
+  border-top: 1px solid rgba(0, 0, 0, .15);
+  background-color: #fff;
+}
+
+.footer .email {
+  color: #926600;
+  margin-bottom: 1.8rem;
+  font-weight: bold;
+}
+
+.footer .tel {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  color: rgba(0, 0, 0, .4);
+  font-weight: bold;
+}

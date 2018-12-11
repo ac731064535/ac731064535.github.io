@@ -1,0 +1,105 @@
+.jobs-sort {
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0 1.4rem;
+  margin-bottom: 1.2rem;
+  background-color: #fff;
+}
+
+.jobs-sort .info {
+  display: flex;
+  font-size: 1.4rem;
+  color: #000;
+}
+
+.jobs-sort .name {
+  margin-right: 2rem;
+}
+
+.jobs-sort .arrow {
+  height: 5rem;
+}
+
+.list {
+  background-color: #fff;
+}
+
+.list li {
+  height: 7.5rem;
+  display: flex;
+  padding: 0 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.list li + li {
+  border-top: 1px solid #E9E9E9;
+}
+
+.list .title {
+  font-size: 1.4rem;
+  line-height: 2.3rem;
+  color: #926600;
+}
+
+.list .txt {
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.7rem;
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, .3);
+}
+
+.pop-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.pop-bg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.pop-con {
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 13.5rem;
+  border-radius: .8rem;
+  padding: 2.3rem;
+  font-size: 1.4rem;
+  line-height: 2.5rem;
+  color: #000;
+}
+
+.pop-con input[type='radio'] {
+  display: none;
+}
+
+.pop-con li + li {
+  margin-top: 1.5rem;
+}
+
+.pop-con .ico-radio {
+  padding-left: 2.9rem;
+  background-image: url(../img/radio.png);
+  background-repeat: no-repeat;
+  background-position: 0 center;
+  background-size: 2rem;
+  cursor: pointer;
+}
+
+.pop-con input:checked + .ico-radio,
+.pop-con .ico-radio.active {
+  background-image: url(../img/select.png);
+}

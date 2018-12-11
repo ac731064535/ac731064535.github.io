@@ -1,0 +1,57 @@
+
+.banner {
+  width: 100%;
+  display: block;
+}
+
+.jobs-box {
+  margin-top: 1rem;
+  background-color: #fff;
+  padding: 2rem 0 3rem 1.7rem;
+}
+
+.jobs-box .hd {
+  padding-right: 1.7rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.jobs-box h2 {
+  background-image: url(../img/icon1.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 3rem;
+  padding-left: 4rem;
+  line-height: 3rem;
+  color: #000;
+  font-size: 2.1rem;
+}
+
+.jobs-box .items-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.jobs-box .btn {
+  display: inline-block;
+  width: 8.6rem;
+  height: 3.9rem;
+  line-height: 3.9rem;
+  border: 1px solid #979797;
+  color: #6F6F6F;
+  font-size: 1.2rem;
+  border-radius: .4rem;
+  margin-right: 1.3rem;
+  margin-bottom: .8rem;
+  cursor: pointer;
+  background-color: transparent;
+  text-align: center;
+}
+
+.jobs-box .btn:hover,
+.jobs-box .btn:active{
+  background-color: #7E652C;
+  border-color: #7E652C;
+  color: #fff;
+}
