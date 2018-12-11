@@ -149,11 +149,6 @@ var jobType = {
         },
         {
             index: 28,
-            value: 'IPREngineer',
-            label: '知识产权工程师'
-        },
-        {
-            index: 29,
             value: 'STDEngineer',
             label: '系统交付工程师'
         }
@@ -161,50 +156,50 @@ var jobType = {
     prodANDmarket: [
         {
             type: '生产与市场类',
-            index: 30,
+            index: 29,
             value: 'operatorDirector',
             label: '运营经理'
         },
         {
-            index: 31,
+            index: 30,
             value: 'userDirector',
             label: '用户运营'
         },
         {
-            index: 32,
+            index: 31,
             value: 'marketingManager',
             label: '文宣'
         },
         {
-            index: 33,
+            index: 32,
             value: 'cameraman',
             label: '摄影师'
         },
         {
-            index: 34,
+            index: 33,
             value: 'graphicDesigner',
             label: '平面设计师'
         },
         {
-            index: 35,
+            index: 34,
             value: 'customerSupervisor',
             label: '售后客服'
         }
     ],
     inMgmtType: [
         {
-            index: 36,
+            index: 35,
             type: '综合管理类',
             value: 'PgMamtEngineer',
             label: '计划管理工程师'
         },
         {
-            index: 37,
+            index: 36,
             value: 'publicBidding',
             label: '综合采购'
         },
         {
-            index: 38,
+            index: 37,
             value: 'lawSupervisor',
             label: '法务主管'
         }
